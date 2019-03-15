@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase'
+import './assets/scss/app.scss'
 
 import Login from '@/components/Login'
 import Dashboard from '@/components/Dashboard'
