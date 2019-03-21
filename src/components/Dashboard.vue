@@ -8,7 +8,7 @@
                     <div class="create-post">
                         <p>create a post</p>
                         <form @submit.prevent>
-                            <textarea></textarea>
+                            <textarea v-model.trim="post.content"></textarea>
                             <button @click="createPost" :disabled="post.content == ''" class="button">post</button>
                         </form>
                     </div>
@@ -25,6 +25,7 @@
 
 <script>
     import { mapState } from "vuex";
+    const fb = require('@/firebaseConfig.js')
 
     export default {
         data() {
@@ -35,12 +36,12 @@
             }
         },
         computed: {
-            ...mapState(['userProfile'])
+            ...mapState(['userProfile', 'currentUser'])
         },
         methods: {
             createPost() {
                 fb.postsCollection.add({
-                    createdOn: new Data(),
+                    createdOn: new Date(),
                     content: this.post.content,
                     userId: this.currentUser.uid,
                     userName: this.userProfile.name,
